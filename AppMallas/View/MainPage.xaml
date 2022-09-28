@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMallas.MainPage">
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <StackLayout VerticalOptions="Center">
+                <Label Text="{Binding LblCodigoBarras}"
+               HorizontalTextAlignment="Center" Margin="0,8,0,0"
+               FontSize="20" FontAttributes="Bold"
+               />
+                <Button x:Name="btnScan"
+                        Text="Escanear" HorizontalOptions="Center" VerticalOptions="Center"
+                        Command="{Binding EscanearCBACommand}"/>
+            </StackLayout>
+
+
+            <StackLayout VerticalOptions="Center" >
+                <Grid >
+                    <!--Definicion de las columnas-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Entry Text="{Binding CantidadTallos}"
+                           Grid.Column="0"
+                   Keyboard="Numeric" Placeholder="Numero de Tallos Ej: 2"/>
+                    <!--(Clicked="btnAgregar_Clicked")-->
+                    <Button Text="Agregar" x:Name="btnAgregar" Command="{Binding AddCBCommand}"
+                    HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
+                </Grid>
+            </StackLayout>
+
+
+
+            <!--Scroll view-->
+            <ScrollView >
+                <!--Probando si rse recarga la vista-->
+                <StackLayout x:Name="st">
+                    <!--(x:Name="lstCodigoBarras")-->
+                    <ListView ItemsSource="{Binding ListaMallas}"
+                          HasUnevenRows="True"
+                          IsRefreshing="False">
+                        <!--Items-->
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <!--(VerticalOptions="FillAndExpand")-->
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Text="{Binding CodigoBarras}"
+                                               VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                               FontSize="16" FontAttributes="Bold"
+                                               Grid.Column="0"/>
+                                        <Button Text="Editar"
+                                            VerticalOptions="Center" HorizontalOptions="Center"
+                                            Grid.Column="1"/>
+                                        <Button Text="Editar"
+                                            VerticalOptions="Center" HorizontalOptions="Center"
+                                            Grid.Column="2"/>
+                                        
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+    
+
+</ContentPage>
